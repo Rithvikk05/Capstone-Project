@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Study Pal - Quiz Setup</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container" style="max-width: 500px; padding-top: 10vh;">
+        <div class="card">
+            <h1>Practice Quiz</h1>
+            <p class="text-center">Select a topic to test knowledge</p>
+
+            <form action="/generate_quiz_only" method="POST" style="margin-top: 20px;">
+                <label>Subject</label>
+                <select name="subject" required>
+                    <option value="" disabled selected>Select a subject</option>
+                    {% for subj in subjects %}
+                    <option value="{{ subj }}">{{ subj }}</option>
+                    {% endfor %}
+                </select>
+
+                <label>Difficulty</label>
+                <select name="difficulty">
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                </select>
+
+                <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Start Quiz</button>
+            </form>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

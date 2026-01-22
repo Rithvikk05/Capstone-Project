@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Study Pal - Practice Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .question-card {
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .correct {
+            color: var(--success);
+            font-weight: bold;
+            margin-top: 10px;
+            padding: 10px;
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: 4px;
+        }
+
+        details summary {
+            cursor: pointer;
+            color: var(--text-muted);
+            margin-top: 10px;
+            outline: none;
+        }
+
+        details[open] summary {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="max-width: 800px;">
+        <h1>Quiz: {{ subject }}</h1>
+
+        {% if not quiz %}
+        <div class="card text-center">
+            <p>No questions generated for specific subject. Try broad terms like "Science".</p>
+        </div>
+        {% else %}
+        {% for q in quiz %}
+        <div class="question-card">
+            <p style="font-size: 1.1em; color: var(--text-main);"><strong>Q{{ loop.index }}: {{ q.question }}</strong>
+            </p>
+            {% for opt in q.options %}
+            <label
+                style="display:flex; align-items:center; gap: 10px; cursor: pointer; padding: 5px; border-radius: 4px; transition: background 0.2s;">
+                <input type="radio" name="q{{ loop.index }}" style="width: auto; margin:0;" value="{{ opt }}">
+                {{ opt }}
+            </label>
+            {% endfor %}
+            <details>
+                <summary>Show Answer</summary>
+                <div class="correct">Correct Answer: {{ q.correct }}</div>
+            </details>
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        <div class="grid mt-4">
+            <a href="/quiz_setup" class="btn btn-primary">Take Another Quiz</a>
+            <a href="/dashboard" class="btn btn-secondary">Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

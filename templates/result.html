@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Pal - Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        th {
+            color: var(--accent);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .feedback-box {
+            background: linear-gradient(90deg, rgba(99, 102, 241, 0.1), transparent);
+            border-left: 4px solid var(--primary);
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Your Study Plan</h1>
+
+        <div class="card">
+            <h2>Motivational Feedback</h2>
+            <div class="feedback-box">
+                {{ feedback }}
+            </div>
+        </div>
+
+        {% if plan %}
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2>Schedule</h2>
+                <a href="/download_plan" class="btn btn-primary"
+                    style="width: auto; padding: 8px 16px; font-size: 0.9em;">Download CSV</a>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th width="15%">Time</th>
+                        <th>Activity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in plan %}
+                    <tr {% if item.is_break %}style="background-color: rgba(16, 185, 129, 0.1);" {% endif %}>
+                        <td>{{ item.hour }}</td>
+                        <td>{{ item.activity | safe }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        {% if summary %}
+        <div class="card">
+            <h2>Summary & Tips</h2>
+            <h3 style="color: var(--accent); margin-top: 10px;">Summary</h3>
+            <p>{{ summary }}</p>
+
+            <h3 style="color: var(--accent); margin-top: 20px;">Study Tips</h3>
+            <ul style="padding-left: 20px; color: var(--text-muted);">
+                {% for tip in tips %}
+                <li style="margin-bottom: 8px;">{{ tip }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <!-- Quiz and Resources blocks are mostly separate now but keep for backward compatibility if mixed -->
+        {% if quiz %}
+        <div class="card">
+            <h2>Practice Quiz</h2>
+            {% for q in quiz %}
+            <div style="margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid var(--glass-border);">
+                <p><strong>Q{{ loop.index }}: {{ q.question }}</strong></p>
+                {% for opt in q.options %}
+                <label style="margin-right: 15px;">
+                    <input type="radio" name="q{{ loop.index }}" value="{{ opt }}"> {{ opt }}
+                </label>
+                {% endfor %}
+                <details>
+                    <summary style="cursor: pointer; color: var(--text-muted); margin-top: 5px;">Show Answer</summary>
+                    <span style="color: var(--success); font-weight: bold;">Correct: {{ q.correct }}</span>
+                </details>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if resources %}
+        <div class="card">
+            <h2>Recommended Resources</h2>
+            <ul>
+                {% for res in resources %}
+                <li><a href="{{ res }}" target="_blank">{{ res }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

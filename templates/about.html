@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Study Pal - About</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>About AI Study Pal</h1>
+
+        <div class="card">
+            <h2>Project Overview</h2>
+            <p>AI Study Pal is a simplified web-based application designed for students to apply Artificial Intelligence
+                Course Curriculum topics. It creates a user-friendly study assistant that generates basic study plans,
+                summarizes texts, creates practice quizzes, and provides encouraging feedback.</p>
+        </div>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Tech Stack</h2>
+                <ul>
+                    <li><strong>Language:</strong> Python 3.x</li>
+                    <li><strong>Web Framework:</strong> Flask</li>
+                    <li><strong>Data Handling:</strong> Pandas</li>
+                    <li><strong>Frontend:</strong> HTML5, CSS3 (Glassmorphism)</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h2>AI Models</h2>
+                <ul>
+                    <li><strong>Quiz Generation:</strong> Logistic Regression (Classification), K-Means (Clustering)
+                    </li>
+                    <li><strong>Summarization:</strong> LSTM Neural Network (Seq2Seq) / Heuristic Fallback</li>
+                    <li><strong>NLP:</strong> NLTK for Tokenization and Keyword Extraction</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Ethics & Privacy</h2>
+            <p>This project is designed with a positive educational focus. No personal user data is permanently stored
+                or shared. All models operate locally for demonstration purposes.</p>
+        </div>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">Back to Home</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Pal - Your Smart Study Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">AI Study Pal</div>
+        <div class="nav-links">
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container text-center">
+            <h1>Your Smart Study Assistant</h1>
+            <p class="hero-subtitle">Generate plans, quizzes, summaries, and tips instantly.</p>
+            <a href="/dashboard" class="btn btn-primary btn-lg">Start Studying</a>
+        </div>
+    </header>
+
+    <section class="features container">
+        <h2 class="text-center">Key Features</h2>
+        <div class="grid">
+            <div class="card feature-card">
+                <div class="icon">📅</div>
+                <h3>Study Planner</h3>
+                <p>Personalized schedules based on your priorities and available hours.</p>
+            </div>
+            <div class="card feature-card">
+                <div class="icon">📝</div>
+                <h3>Quiz Generator</h3>
+                <p>Practice MCQs generated from our extensive educational knowledge base.</p>
+            </div>
+            <div class="card feature-card">
+                <div class="icon">⚡</div>
+                <h3>Text Summarizer</h3>
+                <p>Condense complex study material into quick, readable summaries.</p>
+            </div>
+            <div class="card feature-card">
+                <div class="icon">💡</div>
+                <h3>Smart Tips</h3>
+                <p>Get AI-driven study tips and motivational feedback to keep going.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works container">
+        <h2 class="text-center">How It Works</h2>
+        <div class="steps-grid">
+            <div class="step">
+                <div class="step-num">1</div>
+                <h3>Input Details</h3>
+                <p>Choose your subject and study duration.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <h3>AI Generates</h3>
+                <p>We build your plan, quiz, or summary instantly.</p>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <h3>Start Learning</h3>
+                <p>Follow the plan, take quizzes, and master the topic.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 AI Study Pal Project. Built with Python & Flask.</p>
+            <div class="footer-links">
+                <a href="/about">About Project</a> |
+                <a href="/dashboard">Tools</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

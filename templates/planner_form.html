@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Pal - Create Plan</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        function addRow() {
+            const container = document.getElementById('subjects-container');
+            const index = container.children.length;
+            const div = document.createElement('div');
+            div.className = 'grid'; // Use grid for alignment but restrict columns
+            div.style.gridTemplateColumns = "2fr 1fr auto";
+            div.style.alignItems = "center";
+            div.style.marginBottom = "10px";
+            div.innerHTML = `
+                <input type="text" name="subject_${index}" placeholder="Subject (e.g. Math)" required style="margin-bottom:0">
+                <select name="priority_${index}" style="margin-bottom:0">
+                    <option value="High">High Priority</option>
+                    <option value="Medium" selected>Medium Priority</option>
+                    <option value="Low">Low Priority</option>
+                </select>
+                <button type="button" class="btn btn-danger" style="padding: 10px 15px;" onclick="this.parentElement.remove()">✕</button>
+            `;
+            container.appendChild(div);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container" style="max-width: 700px;">
+        <h1>Create Study Plan</h1>
+        <div class="card">
+            <form action="/generate_plan" method="POST">
+                <div style="margin-bottom: 20px;">
+                    <label>Total Study Hours</label>
+                    <input type="number" name="total_hours" min="1" max="12" value="4" required>
+                </div>
+
+                <label>Subjects & Priorities</label>
+                <div id="subjects-container" style="margin-bottom: 20px;">
+                    <div class="grid"
+                        style="grid-template-columns: 2fr 1fr auto; align-items: center; margin-bottom: 10px; gap: 10px;">
+                        <input type="text" name="subject_0" placeholder="Subject (e.g. Math)" required
+                            style="margin-bottom:0">
+                        <select name="priority_0" style="margin-bottom:0">
+                            <option value="High">High Priority</option>
+                            <option value="Medium">Medium Priority</option>
+                            <option value="Low">Low Priority</option>
+                        </select>
+                        <button type="button" class="btn btn-danger" style="padding: 10px 15px;"
+                            onclick="this.parentElement.remove()">✕</button>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-secondary" onclick="addRow()"
+                    style="margin-bottom: 20px; width: 100%; border: 1px dashed var(--glass-border);">+ Add Another
+                    Subject</button>
+
+                <div style="margin-bottom: 20px;">
+                    <label>Notes / Topic to Summarize (Optional)</label>
+                    <textarea name="topic_text" rows="3"
+                        placeholder="Paste text here to get AI summaries and tips..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Generate Personalized Plan</button>
+            </form>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

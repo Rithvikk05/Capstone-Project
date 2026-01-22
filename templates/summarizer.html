@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Study Pal - Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container" style="max-width: 800px; padding-top: 50px;">
+        <h1>Text Summarizer</h1>
+        <p class="text-center" style="margin-bottom: 30px;">Condense your study notes instantly using Deep Learning.</p>
+
+        <div class="card">
+            <form action="/summarize_text" method="POST">
+                <label>Paste your text here (100-200 words)</label>
+                <textarea name="text_input" rows="8" placeholder="Photosynthesis is the process used by plants..."
+                    required></textarea>
+                <button type="submit" class="btn btn-primary" style="margin-top: 15px;">Summarize</button>
+            </form>
+        </div>
+
+        {% if summary %}
+        <div class="card" style="border-left: 4px solid var(--accent);">
+            <h2>Summary</h2>
+            <p style="font-size: 1.1rem; color: var(--text-main);">{{ summary }}</p>
+
+            <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 20px 0;">
+
+            <h3>Key Concepts</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;">
+                {% for kw in keywords %}
+                <span
+                    style="background: rgba(99, 102, 241, 0.2); color: var(--primary); padding: 5px 12px; border-radius: 20px; font-size: 0.9em;">#{{
+                    kw }}</span>
+                {% endfor %}
+            </div>
+
+            <p class="feedback-text" style="color: var(--success); font-style: italic;">💡 {{ feedback }}</p>
+        </div>
+        {% endif %}
+
+        <div class="text-center mt-4">
+            <a href="/dashboard" class="btn btn-secondary">← Back to Dashboard</a>
+        </div>
+    </div>
+</body>
+
+</html>

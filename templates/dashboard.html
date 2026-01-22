@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Study Pal - Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>AI Study Pal</h1>
+        <p class="text-center" style="margin-bottom: 3rem;">Select an activity to get started</p>
+
+        <div class="grid">
+            <a href="/planner" class="card dashboard-card">
+                <div class="dashboard-icon">📅</div>
+                <h3>Study Plan</h3>
+                <p>Generate a personalized weighted schedule.</p>
+            </a>
+
+            <a href="/quiz_setup" class="card dashboard-card">
+                <div class="dashboard-icon">🧠</div>
+                <h3>Practice Quiz</h3>
+                <p>Test your knowledge with AI questions.</p>
+            </a>
+
+            <a href="/summarizer" class="card dashboard-card">
+                <div class="dashboard-icon">⚡</div>
+                <h3>Summarizer</h3>
+                <p>Condense notes into quick summaries.</p>
+            </a>
+
+            <a href="/resources" class="card dashboard-card">
+                <div class="dashboard-icon">📚</div>
+                <h3>Resources</h3>
+                <p>Access curated learning materials.</p>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
